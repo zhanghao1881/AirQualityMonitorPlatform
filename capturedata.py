@@ -8,7 +8,7 @@ def job():
     print('\nJob start at', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     try:
         os.chdir('scrapyPM25')
-        os.system('scrapy crawl PMSpider')
+        os.system('python -m scrapy crawl PMSpider')
         print('Scrapy work finished')
     except IOError:
         print('Scrapy work failed')

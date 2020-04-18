@@ -13,7 +13,8 @@ def plot(city_name):
     #连接数据库并获取数据
     db = MySQLdb.connect(db_properties.HOST, db_properties.USER, db_properties.PASSWORD, db_properties.DATABASE, charset='utf8' )
     cursor = db.cursor()
-    sql = "SELECT * from recent_items where city_name='"+city_name+"'"
+    sql = f"SELECT * from recent_items where city_name='{city_name}'"
+    print(sql)
     cursor.execute(sql)
     results = cursor.fetchall()
     x = []
@@ -25,8 +26,9 @@ def plot(city_name):
     y_o3 = []
     y_so2 = []
     city_id = []
-    if results == None:
-        return
+    if len(results) == 0:
+        print(results)
+        return False
     #保存选择城市近期数据
     for row in results:
         x.append(row[8])
@@ -58,6 +60,7 @@ def plot(city_name):
     plt.title(city_name+"历史空气质量")
     plt.legend(loc=1)
     #保存
+    print(city_id)
     plt.savefig('DjangoProject/static/img/'+str(city_id[0])+'.jpg')
     plt.close('all')
 
@@ -76,6 +79,7 @@ def plotAll():
     #对全部城市绘制空气质量曲线
     os.chdir('..')
     for city_name in city_name_list:
-        plot(city_name)
+        if not plot(city_name):
+            break
 
 plotAll()

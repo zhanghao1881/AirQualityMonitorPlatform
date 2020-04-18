@@ -20,7 +20,7 @@ An air quality monitor platform based on Django frame. Related data are crawled 
         conda install Django==3.0.3
         conda install scrapy
         conda install mysqlclient
-        conda install pymysql
+        conda install MySQL-python
     ```
     
 ### 选择你想干的事儿  
