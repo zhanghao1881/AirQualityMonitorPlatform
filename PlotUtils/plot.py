@@ -61,8 +61,9 @@ def plot(city_name):
     plt.legend(loc=1)
     #保存
     print(city_id)
-    plt.savefig('DjangoProject/static/img/'+str(city_id[0])+'.jpg')
+    plt.savefig('DjangoProject/static/img/'+str(city_id[0])+'.png')
     plt.close('all')
+    return True
 
 def plotAll():
     #连接数据库
