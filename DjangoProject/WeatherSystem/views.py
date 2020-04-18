@@ -13,7 +13,7 @@ def index(request):
         'sort_list': sort_list,
         'city_list': city_list,
         'form': SearchForm(),
-        'img': '../static/img/1.jpg',
+        'img': '../static/img/1.png',
     }
     return render(request, 'WeatherSystem/index.html', context)
 
@@ -26,6 +26,6 @@ def search(request):
             'sort_list': sort_list,
             'city_list': city_list,
             'form': SearchForm(),
-            'img': '../static/img/'+city_id+'.jpg',
+            'img': '../static/img/'+city_id+'.png',
         }
     return render(request, 'WeatherSystem/index.html', context)
