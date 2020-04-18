@@ -12,7 +12,7 @@ import db_properties
 
 class Scrapypm25Pipeline(object):
     def __init__(self):
-        self.connect=pymysql.connect(host=db_properties.HOST,user=db_properties.USER,password=db_properties.PASSWORD,db=db_properties.DATABASE,port=3306)
+        self.connect=pymysql.connect(host=db_properties.HOST,user=db_properties.USER,password=db_properties.PASSWORD,db=db_properties.DATABASE,port=3306,charset="utf8")
         self.cursor=self.connect.cursor()
 
     def process_item(self, item, spider):
