@@ -60,7 +60,6 @@ def plot(city_name):
     plt.title(city_name+"历史空气质量")
     plt.legend(loc=1)
     #保存
-    print(city_id)
     plt.savefig('DjangoProject/static/img/'+str(city_id[0])+'.png')
     plt.close('all')
     return True
