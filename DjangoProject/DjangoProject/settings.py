@@ -85,7 +85,7 @@ DATABASES = {
          'NAME': db_param.database,              #数据库名
          'USER': db_param.user,                       #数据库用户名
          'PASSWORD': db_param.password,               #数据库密码
-         'HOST':db_param.host,                   #数据库地址
+         'HOST': db_param.host,                   #数据库地址
          'PORT':'3306',                        #数据库端口号
      }
 }

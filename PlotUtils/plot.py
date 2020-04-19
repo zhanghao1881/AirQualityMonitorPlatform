@@ -5,13 +5,13 @@ import MySQLdb
 import os
 import sys
 sys.path.append("..")
-import db_properties
+from db_properties import db_param
 
 def plot(city_name):
     #中文字体 MacOS可用，WIN自行更改
     plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
     #连接数据库并获取数据
-    db = MySQLdb.connect(db_properties.HOST, db_properties.USER, db_properties.PASSWORD, db_properties.DATABASE, charset='utf8' )
+    db = MySQLdb.connect(db_param.host, db_param.user, db_param.password, db_param.database, charset='utf8' )
     cursor = db.cursor()
     sql = f"SELECT * from recent_items where city_name='{city_name}'"
     print(sql)
@@ -66,7 +66,7 @@ def plot(city_name):
 
 def plotAll():
     #连接数据库
-    db = MySQLdb.connect(db_properties.HOST, db_properties.USER, db_properties.PASSWORD, db_properties.DATABASE, charset='utf8' )
+    db = MySQLdb.connect(db_param.host, db_param.user, db_param.password, db_param.database, charset='utf8' )
     cursor = db.cursor()
     sql = "SELECT city_name from WeatherSystem_city"
     cursor.execute(sql)
