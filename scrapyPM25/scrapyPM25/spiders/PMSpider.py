@@ -9,7 +9,7 @@ import sys
 sys.path.append("..")
 sys.path.append("..")
 sys.path.append("..")
-import db_properties
+from db_properties import db_param
 
 class PmspiderSpider(scrapy.Spider):
     name = 'PMSpider'
@@ -20,7 +20,7 @@ class PmspiderSpider(scrapy.Spider):
     def __init__(self):
         super().__init__()
         self._base_urls = 'https://www.tianqi.com/air/'
-        _city_eng_list = get_city_eng(db_properties.HOST, db_properties.USER, db_properties.PASSWORD, db_properties.DATABASE)
+        _city_eng_list = get_city_eng(db_param)
         self._urls = []
         for city_eng_name in _city_eng_list:
             self._urls.insert(0, f"{self._base_urls}{city_eng_name}")
@@ -44,7 +44,7 @@ class PmspiderSpider(scrapy.Spider):
         if city_name is None:
             eng = response.url.replace(self._base_urls, "")
             self.log(eng)
-            item['city_name'] = get_city_name(db_properties.HOST, db_properties.USER, db_properties.PASSWORD, db_properties.DATABASE, eng)
+            item['city_name'] = get_city_name(db_param, eng)
             item['aqi'] = 0
             item['pm25'] = 0
             item['pm10'] = 0

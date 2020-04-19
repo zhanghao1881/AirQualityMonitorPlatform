@@ -1,9 +1,15 @@
 #coding:utf-8
-#端口号
-HOST='localhost'
-#用户名
-USER='root'
-#密码
-PASSWORD='wangbo1012'
-#数据库
-DATABASE='django_data'
+
+
+class DbParam:
+    def __init__(self, host='localhost', user='root', password='wangbo1012',database='django_data'):
+        #端口号
+        self.host =host
+        #用户名
+        self.user =user
+        #密码
+        self.password =password
+        #数据库
+        self.database =database
+
+db_param = DbParam()

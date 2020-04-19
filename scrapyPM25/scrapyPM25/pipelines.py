@@ -9,11 +9,11 @@ import sys
 import re
 sys.path.append("..")
 sys.path.append("..")
-import db_properties
+from db_properties import db_param
 
 class Scrapypm25Pipeline(object):
     def __init__(self):
-        self.connect=pymysql.connect(host=db_properties.HOST,user=db_properties.USER,password=db_properties.PASSWORD,db=db_properties.DATABASE,port=3306,charset="utf8")
+        self.connect=pymysql.connect(host=db_param.host,user=db_param.user,password=db_param.password,db=db_param.database,port=3306,charset="utf8")
         self.cursor=self.connect.cursor()
 
     def process_item(self, item: dict, spider):

@@ -77,15 +77,15 @@ WSGI_APPLICATION = 'DjangoProject.wsgi.application'
 import sys
 sys.path.append("..")
 sys.path.append("..")
-import db_properties
+from db_properties import db_param
 
 DATABASES = {
     'default': {
          'ENGINE': 'django.db.backends.mysql', #数据库引擎，此处选用mysql
-         'NAME': db_properties.DATABASE,              #数据库名
-         'USER': db_properties.USER,                       #数据库用户名
-         'PASSWORD': db_properties.PASSWORD,               #数据库密码
-         'HOST':db_properties.HOST,                   #数据库地址
+         'NAME': db_param.database,              #数据库名
+         'USER': db_param.user,                       #数据库用户名
+         'PASSWORD': db_param.password,               #数据库密码
+         'HOST':db_param.host,                   #数据库地址
          'PORT':'3306',                        #数据库端口号
      }
 }
