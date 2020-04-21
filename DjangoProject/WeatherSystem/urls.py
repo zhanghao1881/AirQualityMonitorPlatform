@@ -6,6 +6,7 @@ app_name = 'WeatherSystem'
 urlpatterns = [
     # ex: /WeatherSystem/
     path('', views.login, name='login'),
+    path('login', views.login, name='login'),
     path('logged', views.logged, name='logged'),
     path('chart', views.air_quality_chart, name='air_quality_chart'),
     path('map', views.air_quality_map, name='air_quality_map'),
