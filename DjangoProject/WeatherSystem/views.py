@@ -9,17 +9,16 @@ from .forms import SearchForm,CITYCATEGORY
 def login(request):
     return render(request, 'WeatherSystem/login.html')
 
-def search(request):
-    city_id = request.POST['category']
+def refer(request):
+    # city_id = request.POST['category']
     sort_list = CitySort.objects.order_by('aqi')
     city_list = City.objects.order_by('id')
-    if request.method == 'POST':
-        context = {
-            # 'sort_list': sort_list,
-            'city_list': city_list,
-            'form': SearchForm(),
-            'img': '../static/img/'+city_id+'.png',
-        }
+    context = {
+        # 'sort_list': sort_list,
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': '../static/img/1.png',
+    }
     return render(request, 'WeatherSystem/refer.html', context)
 
 def logged(request):
