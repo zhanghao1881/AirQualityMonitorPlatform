@@ -5,7 +5,11 @@ from . import views
 app_name = 'WeatherSystem'
 urlpatterns = [
     # ex: /WeatherSystem/
-    path('', views.index, name='index'),
+    path('', views.login, name='login'),
+    path('logged', views.logged, name='logged'),
+    path('chart', views.air_quality_chart, name='air_quality_chart'),
+    path('map', views.air_quality_map, name='air_quality_map'),
+    path('sort', views.air_quality_sort, name='air_quality_sort'),
     path('search',views.search,name='search'),
     # # ex: /WeatherSystem/5/
     # path('<city_name>/', views.detail, name='detail'),

@@ -6,16 +6,8 @@ from django.http import HttpResponseRedirect
 from .forms import SearchForm,CITYCATEGORY
 
 # Create your views here.
-def index(request):
-    sort_list = CitySort.objects.order_by('aqi')
-    city_list = City.objects.order_by('id')
-    context = {
-        'sort_list': sort_list,
-        'city_list': city_list,
-        'form': SearchForm(),
-        'img': '../static/img/1.png',
-    }
-    return render(request, 'WeatherSystem/index.html', context)
+def login(request):
+    return render(request, 'WeatherSystem/login.html')
 
 def search(request):
     city_id = request.POST['category']
@@ -23,9 +15,54 @@ def search(request):
     city_list = City.objects.order_by('id')
     if request.method == 'POST':
         context = {
-            'sort_list': sort_list,
+            # 'sort_list': sort_list,
             'city_list': city_list,
             'form': SearchForm(),
             'img': '../static/img/'+city_id+'.png',
         }
-    return render(request, 'WeatherSystem/index.html', context)
+    return render(request, 'WeatherSystem/refer.html', context)
+
+def logged(request):
+    sort_list = CitySort.objects.order_by('aqi')
+    city_list = City.objects.order_by('id')
+    context = {
+        # 'sort_list': sort_list,
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': '../static/img/1.png',
+    }
+    return render(request, 'WeatherSystem/logged.html', context)
+
+def air_quality_chart(request):
+    sort_list = CitySort.objects.order_by('aqi')
+    city_list = City.objects.order_by('id')
+    context = {
+        # 'sort_list': sort_list,
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': '../static/img/1.png',
+    }
+    return render(request, 'WeatherSystem/air_quality_chart.html', context)
+
+
+def air_quality_sort(request):
+    sort_list = CitySort.objects.order_by('aqi')
+    city_list = City.objects.order_by('id')
+    context = {
+        # 'sort_list': sort_list,
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': '../static/img/1.png',
+    }
+    return render(request, 'WeatherSystem/air_quality_sort.html', context)
+
+def air_quality_map(request):
+    sort_list = CitySort.objects.order_by('aqi')
+    city_list = City.objects.order_by('id')
+    context = {
+        # 'sort_list': sort_list,
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': '../static/img/1.png',
+    }
+    return render(request, 'WeatherSystem/air_quality_map.html', context)

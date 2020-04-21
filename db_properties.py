@@ -2,7 +2,7 @@
 
 
 class DbParam:
-    def __init__(self, host='localhost', user='root', password='wangbo1012',database='django_data'):
+    def __init__(self, host='localhost', user='test', password='wangbo1012',database='django_data'):
         #端口号
         self.host =host
         #用户名
