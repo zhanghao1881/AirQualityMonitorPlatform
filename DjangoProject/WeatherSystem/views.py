@@ -4,16 +4,19 @@ from django.template import loader
 from WeatherSystem.models import City,CitySort
 from django.http import HttpResponseRedirect
 from .forms import SearchForm,CITYCATEGORY
+from django.contrib.auth import authenticate
 
 # Create your views here.
 def login(request):
     if request.POST:
         usr = request.POST['usr']
         pwd = request.POST['pwd']
-        print(f"login:{usr}, pwd:{pwd}")
-        return render(request, 'WeatherSystem/logged.html')
-    else:
-        return render(request, 'WeatherSystem/login.html')
+        if len(usr) != 0 or len(pwd) != 0:
+            test = authenticate(username=usr, password=pwd)
+        if test is not None:
+            return render(request, 'WeatherSystem/logged.html')
+
+    return render(request, 'WeatherSystem/login.html')
 
 def post_test(request):
     city_id = request.POST['usr']
