@@ -11,7 +11,7 @@ urlpatterns = [
     path('chart', views.air_quality_chart, name='air_quality_chart'),
     path('map', views.air_quality_map, name='air_quality_map'),
     path('sort', views.air_quality_sort, name='air_quality_sort'),
-    path('refer', views.refer, name='refer'),
+    path('post_test', views.post_test, name='post_test'),
     # # ex: /WeatherSystem/5/
     # path('<city_name>/', views.detail, name='detail'),
     # # ex: /WeatherSystem/5/results/
