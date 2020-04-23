@@ -42,7 +42,7 @@ def plot(city_name):
         city_id.append(row[9])
     db.close()
     #画图
-    plt.figure(num=3, figsize=(20, 10),)
+    plt.figure(num=3, figsize=(6, 3),)
     plt.plot(x,y_aqi, color='green', linewidth=1.0, linestyle='-',label='AQI')
     plt.plot(x,y_pm25, color='purple', linewidth=1.0, linestyle='-',label='PM2.5')
     plt.plot(x,y_pm10, color='black', linewidth=1.0, linestyle='-',label='PM10')
@@ -51,14 +51,14 @@ def plot(city_name):
     plt.plot(x,y_o3, color='pink', linewidth=1.0, linestyle='-',label='O3')
     plt.plot(x,y_so2, color='orange', linewidth=1.0, linestyle='-',label='SO2')
     #设置坐标轴与图例等
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m/%d/%Y'))
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
     plt.gcf().autofmt_xdate()
     plt.xlabel("时间")
     plt.xticks(x)
     plt.ylabel("空气质量指数")
     plt.title(city_name+"历史空气质量")
-    plt.legend(loc=1)
+    plt.legend(loc='upper right', fontsize='x-small')
     #保存
     plt.savefig('DjangoProject/static/img/'+str(city_id[0])+'.png')
     plt.close('all')
