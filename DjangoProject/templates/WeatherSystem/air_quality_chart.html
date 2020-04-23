@@ -23,7 +23,7 @@
     </head>
 
 <body>
-	<div class="tabs-content" id="recommended-hotel">
+	<div class="tabs-content" id="recommended-hotel" style="margin-top: 0px;border-top-width: 0px;border-top-style: solid;">
 		<div class="container">
 			<div class="col-md-12">
 				<div class="section-heading" >
@@ -32,19 +32,43 @@
 			</div>
 		</div>
 	</div>
-
-
-    <footer>
+    <div class="tabs-content" id="recommended-hotel" style="border-top-width: 0px;border-top-style: solid;margin-top: 0px;border-bottom-width: 10px;border-bottom-style: solid;padding-top: 40px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-offset-10">
-                    <div class="primary-button">
-                        <a href="alogged" class="scroll-top">返回</a>
+                <section class="services">
+                    <div class="container">
+                        <div class="change-list" style="padding-left: auto">
+                            <form action="chart" method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <input type="submit" value="查询">
+                            </form>
+                        </div>
+                            <div class="col-md-32">
+                                <div>
+                                    <a href={{ img }} target="_black">
+                                    <img src= {{ img }} alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="tabs-content" id="recommended-hotel" style="margin-top: 0px;padding-top: 0px;">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-10">
+                        <div class="primary-button">
+                            <a href="alogged" class="scroll-top">返回</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
 
     <script>window.jQuery || document.write('<script src="../static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>

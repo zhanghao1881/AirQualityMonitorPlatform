@@ -51,7 +51,14 @@ def alogout(request):
 def air_quality_chart(request):
     if not request.session.get('username'):
         return render(request, 'WeatherSystem/alogin.html')
-    return render(request, 'WeatherSystem/air_quality_chart.html')
+    city_id = request.POST['category']
+    city_list = City.objects.order_by('id')
+    context = {
+        'city_list': city_list,
+        'form': SearchForm(),
+        'img': f'../static/img/{city_id}.png',
+    }
+    return render(request, 'WeatherSystem/air_quality_chart.html', context)
 
 def air_quality_sort(request):
     if not request.session.get('username'):
