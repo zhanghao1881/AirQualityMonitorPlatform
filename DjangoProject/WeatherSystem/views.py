@@ -5,7 +5,7 @@ from WeatherSystem.models import City,CitySort
 from django.http import HttpResponseRedirect
 from .forms import SearchForm,CITYCATEGORY
 from django.contrib.auth import authenticate,login,logout
-
+from PlotUtils.plot import Plot
 # Create your views here.
 
 
@@ -50,19 +50,22 @@ def alogout(request):
 
 
 def air_quality_chart(request):
+
     if not request.session.get('username'):
         return render(request, 'WeatherSystem/alogin.html')
     if request.POST:
         ret_id = request.POST.getlist('category')
         if len(ret_id) == 1:
-            city_id = ret_id[0]
+            city_img = f'../static/img/{ret_id[0]}.png'
             img_list = []
         else:
-            city_id = None
-            img_list = list(map(lambda id: f'../static/img/{id}.png', ret_id))
+            city_img = None
+            img_list = list(map(lambda name: f'../static/img/{name}.png',
+                                ['aqi', 'pm25', 'pm10', 'co', 'so2', 'no2', 'o3']))
+            Plot().plot_single(ret_id)
     context = {
         'form': SearchForm(),
-        'img': f'../static/img/{city_id}.png',
+        'img': city_img,
         'img_list': img_list,
     }
     return render(request, 'WeatherSystem/air_quality_chart.html', context)
