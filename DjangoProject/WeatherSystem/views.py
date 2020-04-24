@@ -50,7 +50,8 @@ def alogout(request):
 
 
 def air_quality_chart(request):
-
+    img_list = []
+    city_img = None
     if not request.session.get('username'):
         return render(request, 'WeatherSystem/alogin.html')
     if request.POST:
