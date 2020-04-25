@@ -15,9 +15,6 @@ def job():
         print('Scrapy work failed')
         sys.exit(0)
     try:
-        # os.chdir('..')
-        # os.chdir('PlotUtils')
-        # os.system('python plot.py')
         p = Plot()
         p.plot_all()
         print('Plot work finished')

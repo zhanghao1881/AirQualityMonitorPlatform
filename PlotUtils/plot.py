@@ -4,6 +4,7 @@ import matplotlib.dates as mdates
 import MySQLdb
 import os
 import sys
+import time
 sys.path.append("..")
 from db_properties import db_param
 
@@ -82,20 +83,20 @@ class Plot(object):
         self.draw(city_list,   city_time, city_no2 , "no2"  )
 
     def draw(self, city_name, x, y, targe):
-        plt.figure(num=3, figsize=(6, 3),)
+        plt.figure(num=3, figsize=(8, 4),)
         plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
         plt.plot(x[0], y[0], color='green', linewidth=1.0, linestyle='-', label=city_name[0])
         plt.plot(x[1], y[1], color='red', linewidth=1.0, linestyle='-', label=city_name[1])
         plt.plot(x[2], y[2], color='blue', linewidth=1.0, linestyle='-', label=city_name[2])
         plt.plot(x[3], y[3], color='purple', linewidth=1.0, linestyle='-', label=city_name[3])
         #设置坐标轴与图例等
-        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m-%d %H'))
         plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
         plt.gcf().autofmt_xdate()
-        plt.xlabel("时间")
+        plt.xlabel("时间(h)")
         plt.xticks(x[0])
         plt.ylabel(f"{targe}含量")
-        plt.title(f"{targe} 城市对比图")
+        plt.title(f"{time.strftime('%Y', time.localtime(time.time()))}年 {targe} 城市对比图")
         plt.legend(loc='upper right', fontsize='x-small')
         #保存
         plt.savefig(f'{os.path.dirname(os.getcwd())}/DjangoProject/static/img/{targe}.png')
@@ -144,10 +145,10 @@ class Plot(object):
         plt.plot(x,y_o3, color='pink', linewidth=1.0, linestyle='-',label='O3')
         plt.plot(x,y_so2, color='orange', linewidth=1.0, linestyle='-',label='SO2')
         #设置坐标轴与图例等
-        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H'))
         plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
         plt.gcf().autofmt_xdate()
-        plt.xlabel("时间")
+        plt.xlabel("时间(h)")
         plt.xticks(x)
         plt.ylabel("空气质量指数")
         plt.title(city_name+"历史空气质量")

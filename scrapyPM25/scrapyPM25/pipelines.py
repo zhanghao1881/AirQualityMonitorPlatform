@@ -24,7 +24,8 @@ class Scrapypm25Pipeline(object):
 
         if re.search(r'市', item['city_name']):
             item['city_name'] = item['city_name'].replace('市','')
-        self.cursor.execute(insert_sql, (item['city_name'],item['aqi'],item['pm25'],item['pm10'],item['co'],item['no2'],item['o3'],item['so2']))
+        self.cursor.execute(insert_sql, (item['city_name'],item['aqi'],item['pm25'],item['pm10'],
+                                         item['co'],item['no2'],item['o3'],item['so2']))
 
         self.connect.commit()
         return item
