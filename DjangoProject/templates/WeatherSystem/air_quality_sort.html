@@ -23,7 +23,7 @@
     </head>
 
 <body>
-	<div class="tabs-content" id="recommended-hotel">
+	<div class="tabs-content" id="recommended-hotel" style="margin-top: 0px;border-top-width: 0px;border-top-style: solid;">
 		<div class="container">
 			<div class="col-md-12">
 				<div class="section-heading" >
@@ -32,7 +32,46 @@
 			</div>
 		</div>
 	</div>
-
+    <div class="tabs-content" id="recommended-hotel">
+        <div class="container">
+            <div class="row">
+                <div class="wrapper">
+                    <div class="col-md-12">
+                        <div class="weather-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <section id="second-tab-group" class="weathergroup">
+                                        <div id="monday">
+                                            <div class="row">
+                                                {% for item in sort_list %}
+                                                <div class="col-md-4">
+                                                    <div class="weather-item">
+														    <ul class="time-weather">
+                                                                <li><span>{{item.num}}</span></li><h3>{{ item.city_name }}</h3><br />
+                                                            <li>AQI <span>{{ item.aqi }}</span></li>
+                                                            <li>PM2.5 <span>{{ item.pm25 }}</span></li>
+                                                            <li>PM10 <span>{{ item.pm10 }}</span></li>
+                                                            <li>CO <span>{{ item.co }}</span></li>
+															<li>NO2 <span>{{ item.no2 }}</span></li>
+                                                            <li>O3 <span>{{ item.o3 }}</span></li>
+                                                            <li>CO <span>{{ item.co }}</span></li>
+															<li>SO2 <span>{{ item.so2 }}</span></li>
+                                                        </ul>
+                                                        <br />
+	                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="container">

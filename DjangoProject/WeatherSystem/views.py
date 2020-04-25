@@ -74,7 +74,20 @@ def air_quality_chart(request):
 def air_quality_sort(request):
     if not request.session.get('username'):
         return render(request, 'WeatherSystem/alogin.html')
-    return render(request, 'WeatherSystem/air_quality_sort.html')
+    sort_list = []
+    count = 1
+    sort = CitySort.objects.order_by('aqi')
+    for item in sort:
+        if item.aqi is None:
+            continue
+        item.num = count
+        sort_list.append(item)
+        count += 1
+
+    context = {
+        'sort_list': sort_list,
+    }
+    return render(request, 'WeatherSystem/air_quality_sort.html',context)
 
 def air_quality_map(request):
     if not request.session.get('username'):

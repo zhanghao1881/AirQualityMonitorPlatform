@@ -24,7 +24,6 @@ class CitySort(models.Model):
     aqi = models.IntegerField()
     pm25 = models.IntegerField()
     pm10 = models.IntegerField()
-    co = models.FloatField(max_length=5)
     no2 = models.IntegerField()
     o3 = models.IntegerField()
     co = models.IntegerField()

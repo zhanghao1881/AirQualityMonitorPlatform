@@ -45,14 +45,14 @@ class PmspiderSpider(scrapy.Spider):
             eng = response.url.replace(self._base_urls, "")
             self.log(eng)
             item['city_name'] = get_city_name(db_param, eng)
-            item['aqi'] = 0
-            item['pm25'] = 0
-            item['pm10'] = 0
-            item['co'] = 0
-            item['no2'] = 0
-            item['o3'] = 0
+            item['aqi'] = None
+            item['pm25'] = None
+            item['pm10'] = None
+            item['co'] = None
+            item['no2'] = None
+            item['o3'] = None
             # item['o38h'] = ''.join([x for x in o38h if (x.isdigit() or x=='.')])
-            item['so2'] = 0
+            item['so2'] = None
 
         else:
             item['city_name'] = city_name
