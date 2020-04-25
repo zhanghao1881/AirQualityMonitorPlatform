@@ -20,10 +20,13 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
         <script src="../static/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="../static/js/map/jquery-1.11.1.min.js"></script>
+        <script src="../static/js/map/echarts.min.js"></script>
+        <script src="../static/js/map/china.js"></script>
     </head>
 
 <body>
-	<div class="tabs-content" id="recommended-hotel">
+	<div class="tabs-content" id="recommended-hotel" style="margin-top: 0px;border-top-width: 0px;border-top-style: solid;">
 		<div class="container">
 			<div class="col-md-12">
 				<div class="section-heading" >
@@ -32,8 +35,78 @@
 			</div>
 		</div>
 	</div>
+    <div class="tabs-content" id="recommended-hotel" style="margin-top: 0px;border-top-width: 0px;border-top-style: solid;padding-top: 0px;">
+        <div id="container" style="height: 800px;width:1200px;">
+            <script type="text/javascript">
+                // 全国省份列表
+                var dataMap = [
+                {% for item in map_data %}
+                {
+                    name: '{{item.province}}',
+                    value: '{{item.aqi}}',
+                },
+                {% endfor %}
+                ]
 
-
+                // 绘制图表，准备数据
+                var option = {
+                    tooltip: {
+                        formatter: function (params) {
+                            var info = '<p style="font-size:18px">' + params.name + '</p><p style="font-size:20px">aqi:'+params.value+'</p>'
+                            return info;
+                        },
+                        backgroundColor: "#313695",//提示标签背景颜色
+                        textStyle: { color: "#fff" } //提示标签字体颜色
+                    },
+                    visualMap: {
+                    left: 'right',
+                    min: 0,
+                    max: 100,
+                    inRange: {
+                        color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                    },
+                    text: ['High', 'Low'],           // 文本，默认为数值文本
+                    calculable: true
+                    },
+                    series: [
+                        {
+                            name: '中国',
+                            type: 'map',
+                            mapType: 'china',
+                            selectedMode: 'multiple',
+                            label: {
+                                normal: {
+                                    show: true,//显示省份标签
+                                    // textStyle:{color:"#c71585"}//省份标签字体颜色
+                                },
+                                emphasis: {
+                                    show: true,//对应的鼠标悬浮效果
+                                    // textStyle:{color:"#800080"}
+                                }
+                            },
+                            itemStyle: {
+                                normal: {
+                                    borderWidth: .5,//区域边框宽度
+                                    // borderColor: '#009fe8',//区域边框颜色
+                                    // areaColor:"#ffefd5",//区域颜色
+                                },
+                                emphasis: {
+                                    borderWidth: .5,
+                                    borderColor: '#4b0082',
+                                    areaColor: "#ffdead",
+                                }
+                            },
+                            data: dataMap
+                        }
+                    ]
+                };
+                //初始化echarts实例
+                var myChart = echarts.init(document.getElementById('container'));
+                //使用制定的配置项和数据显示图表
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
     <footer>
         <div class="container">
             <div class="row">

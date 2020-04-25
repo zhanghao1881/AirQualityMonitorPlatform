@@ -92,4 +92,63 @@ def air_quality_sort(request):
 def air_quality_map(request):
     if not request.session.get('username'):
         return render(request, 'WeatherSystem/alogin.html')
-    return render(request, 'WeatherSystem/air_quality_map.html')
+
+    map_data = CitySort.objects.order_by('id')
+    for data in map_data:
+        if data.aqi is None:
+            data.aqi = 0
+        if data.so2 is None:
+            data.so2 = 0
+        if data.co is None:
+            data.co = 0
+        if data.no2 is None:
+            data.no2 = 0
+        if data.pm10 is None:
+            data.pm10 = 0
+        if data.pm25 is None:
+            data.pm25 = 0
+        if data.o3 is None:
+            data.o3 = 0
+        data.province = city_to_province.get(data.city_name)
+    context = {
+        'map_data': map_data,
+    }
+    return render(request, 'WeatherSystem/air_quality_map.html', context)
+
+city_to_province = {
+ '北京'  : '北京',
+ '上海'  : '上海',
+ '深圳'  : '深圳',
+ '天津'  : '天津',
+ '重庆'  : '重庆',
+ '澳门'  : '澳门',
+ '香港'  : '香港',
+ '海口'  : '海南',
+ '台北'  : '台湾',
+ '石家庄'  : '河北',
+ '太原'  : '山西',
+ '济南'  : '山东',
+ '南京'  : '江苏',
+ '杭州'  : '浙江',
+ '合肥'  : '安徽',
+ '福州'  : '福建',
+ '南昌'  : '江西',
+ '郑州'  : '河南',
+ '武汉'  : '湖北',
+ '长沙'  : '湖南',
+ '广州'  : '广东',
+ '南宁'  : '广西',
+ '成都'  : '四川',
+ '贵阳'  : '贵州',
+ '昆明'  : '云南',
+ '西安'  : '陕西',
+ '兰州'  : '甘肃',
+ '沈阳'  : '辽宁',
+ '长春'  : '吉林',
+ '哈尔滨'  : '黑龙江',
+ '西宁'  : '青海',
+ '银川'  : '宁夏',
+ '拉萨'  : '西藏',
+ '乌鲁木齐'  : '新疆',
+ '呼和浩特'  : '内蒙古',
+}
